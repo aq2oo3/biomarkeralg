@@ -112,18 +112,18 @@ print(predict_new(13.0, 109.0, 9885.0, 1888.0, 642.95))  # true positive - TBI K
 print(predict_new(8.5, 0.0, 6722.0, 954.5, 1097.75))  # true negative - Control HMN1243449A (012M)
 print(predict_new(3.5, 0.0, 4476.0, 819.0, 3836.8))  # true negative - Control HMN1265412A (029F)
 
-if __name__ == "__main__":
-    # Read JSON input from stdin (from biomarkeranalysis.tsx)
-    input_data = sys.stdin.read()
-    try:
-        params = json.loads(input_data)
-        gfap = params.get("gfap")
-        ngrn = params.get("ngrn")
-        st2 = params.get("st2")
-        bdnf = params.get("bdnf")
-        aldoc = params.get("aldoc")
-        load_data('new_parsed_TBI.csv', 'GCS', 42)
-        result = predict_new(gfap, ngrn, st2, bdnf, aldoc)
-        print(json.dumps({"prediction": int(result[0])}))
-    except Exception as e:
-        print(json.dumps({"error": str(e)}))
+# if __name__ == "__main__":
+#     # Read JSON input from stdin (from biomarkeranalysis.tsx)
+#     input_data = sys.stdin.read()
+#     try:
+#         params = json.loads(input_data)
+#         gfap = params.get("gfap")
+#         ngrn = params.get("ngrn")
+#         st2 = params.get("st2")
+#         bdnf = params.get("bdnf")
+#         aldoc = params.get("aldoc")
+#         load_data('new_parsed_TBI.csv', 'GCS', 42)
+#         result = predict_new(gfap, ngrn, st2, bdnf, aldoc)
+#         print(json.dumps({"prediction": int(result[0])}))
+#     except Exception as e:
+#         print(json.dumps({"error": str(e)}))
