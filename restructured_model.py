@@ -48,6 +48,10 @@ def load_data(csv, drop, seed):
     mlp.fit(X_train, y_train)
     model = mlp
 
+    # y_pred = mlp.predict(X_test)
+    # y_predprob = mlp.predict_proba(X_test)
+    # pd.DataFrame(y_predprob, columns=["prob_control", "prob_tbi"]).to_csv("y_test_probs.csv", index=False)
+
     # # Predict on test set
     # y_pred = mlp.predict(X_test)
     # get_results(y_test, y_pred)
@@ -61,6 +65,9 @@ def load_data(csv, drop, seed):
     # y_full = pd.concat([y_train, y_test])
     # y_pred_full = mlp.predict(X_full)
     # get_results(y_full, y_pred_full)
+
+    # y_pred_full = mlp.predict_proba(X_full)[:, 1]
+    # pd.DataFrame(y_pred_full, columns=["prob_control", "prob_tbi"]).to_csv("y_pred_full_probs.csv", index=False)
 
 def predict_new(gfap, ngrn, st2, bdnf, aldoc):
     global scaler, model
@@ -80,6 +87,7 @@ def predict_new(gfap, ngrn, st2, bdnf, aldoc):
 
     new_data_scaled = scaler.transform(test_row)
     predictions = model.predict(new_data_scaled)
+    print("prob_tbi:", model.predict_proba(new_data_scaled)[:, 1])
 
     return predictions
 
